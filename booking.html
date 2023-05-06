@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Booking</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+      background-image: url('bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 20px;
+      color:#ADD8E6;
+
+		}
+
+		.container {
+		max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+		}
+
+		.movie-list {
+			display: flex;
+			flex-wrap: wrap;
+			margin: 20px 0;
+		}
+
+		.movie {
+			flex: 1 0 200px;
+			margin: 10px;
+			border: 1px solid #ccc;
+			padding: 10px;
+			cursor: pointer;
+			transition: all 0.2s ease-in-out;
+      width: 200px;
+      height: 400px;
+    overflow: hidden;
+		}
+
+		.movie:hover {
+			background-color: #f1f1f1;
+			transform: translateY(-2px);
+			box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+		}
+
+		.booked {
+			background-color: red;
+			color: white;
+		}
+
+		.available {
+			background-color: green;
+			color: white;
+		}
+
+		.seat {
+			width: 30px;
+			height: 30px;
+			margin: 5px;
+			border: 1px solid #ccc;
+			display: inline-block;
+			cursor: pointer;
+			transition: all 0.2s ease-in-out;
+		}
+
+		.seat:hover {
+			background-color: #f1f1f1;
+			transform: translateY(-2px);
+			box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+		}
+
+		.selected {
+			background-color: blue;
+			color: white;
+		}
+
+  .movie img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .movie {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+	</style>
+
+
+</head>
+<body>
+	<h1>Movie Booking</h1>
+	<div class="container">
+		<div class="movie-list">
+			<div class="movie" data-title="The Avengers">
+				<img src="avengers.jpg" alt="The Avengers" />
+				<h2>The Avengers</h2>
+
+			</div>
+			<div class="movie" data-title="The Dark Knight">
+				<img src="dark.jpg" alt="The Dark Knight" />
+				<h2>The Dark Knight</h2>
+
+			</div>
+			<div class="movie" data-title="The Shawshank Redemption">
+				<img src="minion.jpg" alt="The Shawshank Redemption" />
+				<h2>Minion</h2>
+
+			</div>
+
+
+      <div class="movie-list">
+  			<div class="movie" data-title="The Avengers">
+  				<img src="avengers.jpg" alt="The Avengers" />
+  				<h2>The Avengers</h2>
+
+  			</div>
+  			<div class="movie" data-title="The Dark Knight">
+  				<img src="dark.jpg" alt="The Dark Knight" />
+  				<h2>The Dark Knight</h2>
+
+  			</div>
+  			<div class="movie" data-title="The Shawshank Redemption">
+  				<img src="minion.jpg" alt="The Shawshank Redemption" />
+  				<h2>Minion</h2>
+
+  			</div>
+        <div>
+
+		</div>
+		<div class="seats">
+			<h2>Select a seat:</h2>
+			<div class="seat available"></div>
+			<div class="seat available"></div>
+			<div class="seat booked"></div>
+      <div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat available"></div>
+<div class="seat booked"></div>
+</div>
+</div>
+<script>
+const movies = document.querySelectorAll('.movie');
+const seats = document.querySelectorAll('.seat.available');
+let selectedSeats = [];
+
+// Add event listeners to each movie to select it
+movies.forEach(movie => {
+movie.addEventListener('click', () => {
+  // Remove selected class from other movies
+  movies.forEach(m => {
+    m.classList.remove('selected');
+  });
+
+  // Add selected class to clicked movie
+  movie.classList.add('selected');
+});
+});
+
+// Add event listeners to each seat to select it
+seats.forEach(seat => {
+seat.addEventListener('click', () => {
+  // Toggle selected class
+  seat.classList.toggle('selected');
+
+  // Update selected seats array
+  selectedSeats = [];
+  seats.forEach(s => {
+    if (s.classList.contains('selected')) {
+      selectedSeats.push(s);
+    }
+  });
+
+  // Disable the booking button if no seats are selected
+  if (selectedSeats.length === 0) {
+    bookButton.disabled = true;
+  } else {
+    bookButton.disabled = false;
+  }
+});
+});
+
+// Add event listener to the book button to book selected seats
+const bookButton = document.querySelector('#book-button');
+bookButton.addEventListener('click', () => {
+selectedSeats.forEach(seat => {
+seat.classList.remove('available');
+seat.classList.add('booked');
+seat.removeEventListener('click', () => {});
+});
+selectedSeats = [];
+bookButton.disabled = true;
+});
+</script>
+
+</body>
+</html>
